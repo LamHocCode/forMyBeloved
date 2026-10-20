@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khu vườn đêm — 20.10</title>
+  <meta name="description" content="Một món quà nhỏ cho ngày 20 tháng 10." />
+
+  <!-- Fonts: Cormorant Garamond (lời nhắn, tiêu đề) + Be Vietnam Pro (giao diện).
+       Cả hai đều hỗ trợ đầy đủ dấu tiếng Việt. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Be+Vietnam+Pro:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Đom đóm trôi trong nền (trang trí, ẩn với screen reader) -->
+  <div class="fireflies" id="fireflies" aria-hidden="true"></div>
+
+  <main id="app">
+
+    <!-- ============ SCENE A: LỜI MỜI ============ -->
+    <section class="scene scene-invitation is-active" id="scene-invitation" aria-label="Lời mời">
+      <p class="invitation-date" id="invitationDate">20.10</p>
+      <svg class="bud" viewBox="0 0 120 160" aria-hidden="true" focusable="false">
+        <path class="bud-stem" d="M60 150 C 58 120, 62 104, 60 86" />
+        <path class="bud-leaf" d="M60 122 C 44 118, 34 106, 34 92 C 48 96, 58 106, 60 122 Z" />
+        <path class="bud-petal bud-petal-l" d="M60 88 C 42 76, 40 48, 52 30 C 60 44, 64 66, 60 88 Z" />
+        <path class="bud-petal bud-petal-r" d="M60 88 C 78 76, 80 48, 68 30 C 60 44, 56 66, 60 88 Z" />
+        <path class="bud-petal bud-petal-c" d="M60 86 C 52 64, 52 42, 60 24 C 68 42, 68 64, 60 86 Z" />
+      </svg>
+      <h1 class="invitation-title" id="invitationTitle">Dành tặng em</h1>
+      <p class="invitation-subtitle" id="invitationSubtitle">Một khu vườn nhỏ, chỉ nở hoa vì em.</p>
+      <button class="btn btn-primary" id="btnEnter" type="button">Bước vào khu vườn</button>
+    </section>
+
+    <!-- ============ SCENE B: HOA NỞ ============ -->
+    <section class="scene scene-bloom" id="scene-bloom" aria-label="Bông hoa">
+      <h2 class="bloom-heading" id="bloomHeading">Bông hoa của em</h2>
+      <p class="bloom-hint" id="bloomHint">Chạm vào từng cánh hoa để đọc lời nhắn giấu trong đó.</p>
+
+      <div class="flower-stage">
+        <svg id="flower" class="flower" viewBox="0 0 600 600" role="group" aria-label="Bông hoa với những cánh hoa chứa lời nhắn"></svg>
+        <!-- Đom đóm bí mật: một khám phá ẩn nho nhỏ -->
+        <button class="secret-firefly" id="secretFirefly" type="button" aria-label="Một đốm sáng nhỏ"></button>
+      </div>
+
+      <div class="petal-note" id="petalNote" aria-live="polite" hidden>
+        <p class="petal-note-index" id="petalNoteIndex"></p>
+        <p class="petal-note-text" id="petalNoteText"></p>
+      </div>
+
+      <p class="bloom-progress" id="bloomProgress" aria-live="polite"></p>
+      <button class="btn btn-primary bloom-continue" id="btnToSecret" type="button" hidden>Đi tiếp</button>
+    </section>
+
+    <!-- ============ SCENE C: BÍ MẬT ============ -->
+    <section class="scene scene-secret" id="scene-secret" aria-label="Câu đố">
+      <h2 class="secret-heading" id="secretHeading">Một phong thư đang chờ</h2>
+      <p class="secret-sub" id="secretSub">Nhưng nó được niêm phong. Trả lời câu đố nhỏ này để mở nhé.</p>
+
+      <div class="sealed-envelope" id="sealedEnvelope" aria-hidden="true">
+        <div class="sealed-flap"></div>
+        <div class="sealed-body"></div>
+        <div class="sealed-wax" id="sealedWax">❀</div>
+      </div>
+
+      <div class="riddle-card">
+        <p class="riddle-question" id="riddleQuestion"></p>
+        <form class="riddle-form" id="riddleForm">
+          <label class="visually-hidden" for="riddleInput">Câu trả lời của em</label>
+          <input
+            type="text"
+            id="riddleInput"
+            class="riddle-input"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Câu trả lời của em…"
+          />
+          <button class="btn btn-primary" id="btnRiddle" type="submit">Mở niêm phong</button>
+        </form>
+        <p class="riddle-feedback" id="riddleFeedback" aria-live="polite"></p>
+        <div class="riddle-aux">
+          <button class="btn-link" id="btnHint" type="button">Gợi ý nhỏ</button>
+          <button class="btn-link" id="btnSkipRiddle" type="button" hidden>Bỏ qua câu đố</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCENE D: LÁ THƯ ============ -->
+    <section class="scene scene-letter" id="scene-letter" aria-label="Lá thư">
+
+      <!-- Phong thư: chạm để mở -->
+      <div class="envelope-stage" id="envelopeStage">
+        <h2 class="letter-heading" id="letterHeading">Phong thư đã mở niêm phong</h2>
+        <button class="envelope" id="envelope" type="button" aria-label="Mở phong thư">
+          <span class="envelope-flap"></span>
+          <span class="envelope-letter-peek"></span>
+          <span class="envelope-body"></span>
+          <span class="envelope-wax">❀</span>
+        </button>
+        <p class="envelope-hint" id="envelopeHint">Chạm để mở</p>
+      </div>
+
+      <!-- Lá thư + khung cảnh kết -->
+      <div class="letter-stage" id="letterStage" hidden>
+        <div class="letter-paper">
+          <div class="letter-medallion">
+            <svg id="miniFlower" class="mini-flower" viewBox="0 0 600 600" aria-hidden="true" focusable="false"></svg>
+          </div>
+          <p class="letter-greeting" id="letterGreeting"></p>
+          <div class="letter-body" id="letterBody"></div>
+          <p class="letter-closing" id="letterClosing"></p>
+          <p class="letter-signature" id="letterSignature"></p>
+        </div>
+        <p class="final-message" id="finalMessage"></p>
+        <button class="btn-link final-replay" id="btnReplay" type="button">Xem lại từ đầu ↺</button>
+      </div>
+
+      <div class="petal-fall" id="petalFall" aria-hidden="true"></div>
+    </section>
+
+  </main>
+
+  <!-- Toast cho khám phá bí mật -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
