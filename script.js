@@ -75,7 +75,7 @@ const CONFIG = {
     paragraphs: [
       "Hic hôm nay anh lu bu vài việc quá xong quên béng mất nay là 20/10 mãi lên công ty anh mới sực nhớ ra nên anh đã lỡ mất là người đầu tiên chúc em 20/10 mất rồi hic",
       "Nhưng không chỉ vậy mà anh bỏ cuộc, nếu anh không trở thành người đầu tiên thì anh sẽ làm tất cả để trở thành người cuối cùng dành cho em mọi sự yêu thương, trân quý và tất nhiên không chỉ ở mỗi ngày 20/10 mà còn là tất cả những ngày về sau trong suốt cuộc đời này.",
-      "20/10 anh mong cầu em luôn hạnh phúc, mãi vui tươi. Hãy luôn là đoá hoa rực rỡ nhất và để anh tưới nước mỗi ngày, anh sẽ trở thành thợ làm vườn nhưng không phải chăm sóc cả khu vườn mà anh sẽ dành mọi sự quan tâm cho duy nhất đoá hoa Nguyễn Trần Anh Thư của anh. Anh yêu em, 20-10 vui vẻ nha love ơi. Đừng có mà im lặng với anh nghe chưa!!",
+      "20/10 anh mong cầu em luôn hạnh phúc, mãi vui tươi. Hãy luôn là đoá hoa rực rỡ nhất và để anh tưới nước mỗi ngày, anh sẽ trở thành thợ làm vườn nhưng không phải chăm sóc cả khu vườn mà anh sẽ dành mọi sự quan tâm cho duy nhất đoá hoa Trần Nguyễn Anh Thư của anh. Anh yêu em, 20-10 vui vẻ nha love ơi. Đừng có mà im lặng với anh nghe chưa!!",
     ],
     closing: "Chúc mừng ngày 20 tháng 10, my everything.",
     signature: "— Chồng của em",
